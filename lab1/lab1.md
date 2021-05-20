@@ -10,3 +10,9 @@ Strong emphasis, aka bold, with asterisks or underscores.
 Lists
 1. First ordered list item
 2. Another item
+
+
+Links
+
+[I'm an inline-style link](https://www.google.com)
+[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
