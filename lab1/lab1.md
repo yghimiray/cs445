@@ -6,3 +6,7 @@ Headers
 ### H3
 
 Strong emphasis, aka bold, with asterisks or underscores.
+
+Lists
+1. First ordered list item
+2. Another item
