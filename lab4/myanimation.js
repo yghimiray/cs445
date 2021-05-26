@@ -10,16 +10,31 @@ let timer;
 let index = 0;
 let animModel;
 let arrModel;
+let delayMs ;
 
 function beginAnimation() {
     const animField = document.getElementById("animation");
     const optionSelected = animField.options[animField.selectedIndex].value;
-    document.getElementById("text-area").value = ANIMATIONS[optionSelected];
-    // animModel= ANIMATIONS[optionSelected];
-    // arrModel = animModel.split("=====\n");
-    // timer = setInterval(repeatAnimation,500);
+        
+    animModel= ANIMATIONS[optionSelected];
+    arrModel = animModel.split("=====\n");
+    changeTurbo();
+
+    resize();    
     document.getElementById("start").disabled = ture;
     document.getElementById("stop").disabled = false;
+}
+
+
+function changeTurbo() {
+    clearInterval(timer);
+    let isTurbo = document.getElementById("turbo").checked;
+    if (isTurbo) {
+        delayMs = 5;
+    } else {
+        delayMs = 1000;
+    }
+    timer = setInterval(repeatAnimation, delayMs);
 }
 
 
