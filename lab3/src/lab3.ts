@@ -42,10 +42,10 @@ class Car {
 	constructor (name: string){
 		this.name = name;
 	}
-	honk = () => { 
+	honk = (): void => { 
 		console.log(` ${this.name} is saying: Toooooooooot!`); 
 	}; 
-	accelerate = (speed: number) => { 
+	accelerate = (speed: number): void => { 
 		this.acceleration = this.acceleration + speed; 
 	} 
 } 
