@@ -8,3 +8,4 @@
 6. [Lab 6](./lab6)
 7. [Lab 7](./lab7)
 8. [Lab 8](./lab8)
+9. [Lab 9](./lab9)

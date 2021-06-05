@@ -3,19 +3,28 @@ const { Observable } = rxjs;
 window.onload = function () {
     document.getElementById("listBtn").onclick = function () {
         let totalEmp = document.getElementById("len").value;
-        let observer = Observable.create(
+        let observable = Observable.create(observer=>{
             fetch("https://randomuser.me/api/?results=" + totalEmp)
-        );
-        let jsonObj = observer.json();
-        let resultsArr = observer.next(jsonObj.results);
-
-        observer.subscribe(resultsArr => {
+            .then(response=> response.json())
+            .then(data=> {
+                observer.next(data.results)
+            })
+        });
+        
+     
+        observable.subscribe(data => {
             const empDiv = document.getElementById("divId");
             empDiv.innerHTML = "";
-            resultsArr.forEach(element => {
+            data.forEach(element => {
                 let template = `
                     <div > 
-                    ${resultsArr.name.first} ${resultsArr.name.last}
+                    ${element.name.first} ${element.name.last}
+                    </div>
+
+                    <div > 
+                    <h3>Location</h3>
+                    <p>${element.location.street.number} ${element.location.street.name}</p>
+                    <p>${element.location.city}, ${element.location.state} ${element.location.country} ${element.location.postcode}</p>
                     </div>
                   `;
                 const div = document.createElement('div');

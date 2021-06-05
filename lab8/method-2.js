@@ -3,11 +3,16 @@ const { map, filter } = rxjs.operators;
 
 window.onload = function () {
     document.getElementById("listBtn").onclick = function () {
+        const empDiv = document.getElementById("divId");
+        empDiv.innerHTML = "";
+
         let totalEmp = document.getElementById("len").value;
-        let fetchResult = await fetch('https://randomuser.me/api/?results=' + totalEmp);
-        let jsonObj = fetchResult.json();
-        let resultsArr = jsonObj.results;
-        let observer = from(resultsArr)
+        let fetchResult = await fetch('https://randomuser.me/api/?results=' + totalEmp)
+            .then(response => response.json())
+            .then(json => json.results);
+
+
+        let observer = from(fetchResult)
             .pipe(
                 map(user => {
                     user.fullName = user.name.first + " " + user.name.last;
@@ -16,23 +21,22 @@ window.onload = function () {
                     return user;
                 })
             )
-        observer.subscribe(user => {
-            const empDiv = document.getElementById("divId");
-            empDiv.innerHTML = "";
-            let template = `     
-                <div class="col">
-                     ${user.fullName}
+            .subscribe(user => {
+                let template = `     
+                             ${user.fullName}
                 </div>
-                <div class="col">
+                
                 <h3>Location</h3>
                 <p>${user.firstAddress}</p>
                 <p>${user.lastAddress}</p>
                 </div>     
                 `;
-            const div = document.createElement('div');
-            div.classList = 'row border-top';
-            div.innerHTML = template;
-            empDiv.appendChild(div);
+                const div = document.createElement('div');
+                div.classList = 'row border-top';
+                div.innerHTML = template;
+                empDiv.appendChild(div);
 
-        }
+            });
+
+    }
 }
