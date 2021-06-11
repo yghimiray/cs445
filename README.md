@@ -10,3 +10,4 @@
 8. [Lab 8](./lab8)
 9. [Lab 9](./lab9)
 10. [Lab 10](./lab10)
+11. [Lab Project](./labProject)

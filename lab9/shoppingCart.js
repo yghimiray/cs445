@@ -1,6 +1,6 @@
 // This is a module design pattern which is an IIFE function, uses private instance through closure
 // all the returns are public
-const shoppingCart = (function () {
+const ShoppingCart = (function () {
     let basket = []; // This is a private instance
     return {
         upsertItem: function (product) {
